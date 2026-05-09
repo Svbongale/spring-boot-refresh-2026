@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: postgres-spring-boot-refresh
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_DB: spring-boot-refresh
+    volumes:
+      - db:/var/lib/postgresql
+    ports:
+      - "5332:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:

@@ -1,27 +1,42 @@
 package com.example.springbootrefresh;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/software-engineers")
 public class SoftwareEngineerController {
 
+    private final SoftwareEngineerService softwareEngineerService;
+
+    public SoftwareEngineerController(SoftwareEngineerService softwareEngineerService) {
+        this.softwareEngineerService = softwareEngineerService;
+    }
+
     @GetMapping("/list")
     public List<SoftwareEngineer> getSoftwareEngineers() {
+        return softwareEngineerService.getAllSoftwareEngineers();
+    }
 
-        List<SoftwareEngineer> list = new ArrayList<>();
+    @GetMapping("{id}")
+    public SoftwareEngineer getSoftwareEngineerById(
+            @PathVariable Integer id
+    ) {
+        return softwareEngineerService.getSoftwareEngineerById(id);
+    }
 
-        SoftwareEngineer se1 = new SoftwareEngineer(1, "Prakash", "Full-Stack");
-        SoftwareEngineer se2 = new SoftwareEngineer(2, "Suresh", "Front-end");
+    @PostMapping("/add")
+    public void addAllSoftwareEngineers(
+            @RequestBody SoftwareEngineer softwareEngineer
+    ) {
+        softwareEngineerService.addSoftwareEngineer(softwareEngineer);
+    }
 
-        list.add(se1);
-        list.add(se2);
-
-        return list;
+    @DeleteMapping("{id}")
+    private void deleteSoftwareEngineerById(
+            @PathVariable Integer id
+    ) {
+        softwareEngineerService.deleteSoftwareEngineerById(id);
     }
 }
