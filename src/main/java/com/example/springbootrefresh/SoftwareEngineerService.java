@@ -8,6 +8,7 @@ import java.util.List;
 public class SoftwareEngineerService {
     private final SoftwareEngineerRepository softwareEngineerRepository;
 
+    // Constructor dependency injection
     public SoftwareEngineerService(SoftwareEngineerRepository softwareEngineerRepository) {
         this.softwareEngineerRepository = softwareEngineerRepository;
     }

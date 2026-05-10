@@ -10,6 +10,7 @@ public class SoftwareEngineerController {
 
     private final SoftwareEngineerService softwareEngineerService;
 
+    // Constructor dependency injection
     public SoftwareEngineerController(SoftwareEngineerService softwareEngineerService) {
         this.softwareEngineerService = softwareEngineerService;
     }
